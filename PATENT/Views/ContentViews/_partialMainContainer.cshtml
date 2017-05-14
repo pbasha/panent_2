@@ -1,0 +1,82 @@
+﻿@model string    
+
+<div id="head_container"></div>
+<div class="horizontal_container">
+    <div id="right_content_container">
+        @{
+            if (Model != null)
+            {
+                @Html.Partial("~/Views/Shared/_partialWriteStringView.cshtml",
+                   String.Format("Wellcome, {0}", @Model));
+            }
+            else
+            {
+                @Html.Partial("~/Views/Shared/_partialWriteStringView.cshtml",
+                   String.Format("not authorize"));
+            }
+        }
+    </div>
+    <div id="left_menu_container">
+        
+        <div class="well well-sm menuItem string-btn">
+            @*@Ajax.ActionLink("Login", "Login", "Home",
+               new AjaxOptions()
+               {
+                   UpdateTargetId = "right_content_container"
+               })*@
+            <a id="btnLogin">Login</a>
+        </div>
+
+        <div class="well well-sm menuItem string-btn">          
+            <a id="btnRegister">Register</a>
+        </div>
+
+        <div class="well well-sm menuItem string-btn">          
+            <a id="btnPatents">Patents</a>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#btnRegister").click(function () {
+
+            $.ajax({
+                url: "Home/Register",
+                method: "GET",
+                success: function (responce) {
+                    $("#right_content_container").html(responce);
+                }
+            });
+        });
+
+        $("#btnLogin").click(function () {
+
+            $.ajax({
+                url: "Home/Login",
+                method: "GET",
+                success: function (responce) {
+                    $("#right_content_container").html(responce);
+                }
+            });
+        });
+
+        $("#btnPatents").click(function () {
+
+            $.ajax({
+                url: "Patent/Get",
+                method: "GET",
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken')
+                },
+                success: function (responce) {
+                    $("#right_content_container").html(responce);
+                }
+            });
+        });
+
+    });
+</script>
+

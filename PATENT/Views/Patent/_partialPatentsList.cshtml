@@ -1,0 +1,42 @@
+﻿@model IEnumerable<patent.DAL.EFModels.Patent>
+
+@{
+    if (Model != null)
+    {
+        <div class="well well-lg my-well-container">
+            <table class="table table-bordered active margin-off">
+                <thead>
+                    <tr class="info">
+                        <th colspan="4">
+                            Patents
+                        </th>
+                    </tr>
+                    <tr class="active">
+                        <th>Patent ID</th>
+                        <th>Patent Name</th>
+                        <th>Inventor Name</th>
+                        <th>Data creation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var patentItem in Model)
+                    {
+                        <tr class="active">
+                            <td>@patentItem.PatentID</td>
+                            <td>@patentItem.PatentName</td>
+                            <td>@patentItem.InventorName</td>
+                            <td>@patentItem.CreatingData</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/_partialWriteStringView.cshtml",
+            String.Format("not authorize"));
+    }
+}
+
+

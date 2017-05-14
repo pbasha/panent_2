@@ -1,0 +1,25 @@
+﻿@model string
+
+@section scripts
+{
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Body
+{
+    <div id="main_container">
+
+        @Html.Partial("~/Views/ContentViews/_partialMainContainer.cshtml", @Model);
+
+    </div>
+
+}

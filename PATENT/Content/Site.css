@@ -1,0 +1,81 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#left_menu_container {
+    overflow: auto;
+    width: 20%;
+    height:80vh;
+}
+
+.string-btn{
+    font-size: 20px;
+    color:#ffffff;
+    cursor: pointer;
+}
+
+.string-btn a:hover {
+    color: #e7f2fe; 
+    text-decoration: none;
+   } 
+
+#head_container {
+    height: 20vh;
+    background-image: url('../images/logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#right_content_container {
+    float: right;   
+    width: 80%;
+    height:80vh;
+    overflow: auto;
+    /*background-image: url('images/image_653861207548185868003177993439794171.jpg');
+    opacity: 0.4;*/
+}
+
+.horizontal_container {
+    overflow: hidden;
+}
+
+.menuItem {
+    /*list-style-type: none;*/
+    background-color: rgba(132, 178, 250, 0.77);
+    /*font-family:'orange juice 2.0';
+    font-size: 20px;
+    color:rgb(2, 16, 177);*/
+
+    margin-top: 7px;
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-bottom: 0;
+    text-align:center;
+}
+
+.margin-off {
+    margin-bottom: 0px;
+}
+
+.info {
+    background-color: rgba(132, 178, 250, 0.77);
+}
+
+.divError{
+    margin-bottom: 0px;
+    margin-top: 25px;
+}
