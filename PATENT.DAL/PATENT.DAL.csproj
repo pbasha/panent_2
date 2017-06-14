@@ -51,7 +51,12 @@
   <ItemGroup>
     <Compile Include="DataProvider\ServiceDBContext.cs" />
     <Compile Include="DataProvider\ServiceDBRepository.cs" />
+    <Compile Include="EfModels\Author.cs" />
+    <Compile Include="EfModels\Copyright.cs" />
     <Compile Include="EfModels\Application.cs" />
+    <Compile Include="EfModels\PatentType.cs" />
+    <Compile Include="EfModels\Payment.cs" />
+    <Compile Include="EfModels\Comments.cs" />
     <Compile Include="EfModels\Patent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

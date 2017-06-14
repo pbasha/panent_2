@@ -1,0 +1,235 @@
+﻿@model patent.DAL.EFModels.Copyright
+@using PATENT.Views.Modals
+
+@{
+    ViewBag.Title = "Application Details";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+@section Body {
+
+    <div>
+        <h2>Информация о заявке "@Model.Name.ToString()"</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BusinessNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BusinessNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Faculty)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Faculty)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Department)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Subjects)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Subjects)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TopicNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TopicNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                Authors
+            </dt>
+            @foreach (var item in Model.Authors)
+            {
+                <dd>
+                    @string.Format("{0} {1} {2} ({3}%)", item.Surname, item.Name, item.Patronymic, item.PercentOwnership)
+                </dd>
+            }
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContractNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContractNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContractDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContractDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Destination)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Destination)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RequestDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OutputNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OutputNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Priority)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Priority)
+            </dd>
+
+        </dl>
+
+        @*Table for payments*@
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Number
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Topic Part
+                </th>
+            </tr>
+            @foreach (var item in Model.Payments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TopicPart)
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <hr />
+
+        @*Table for comments*@
+        <table class="table">
+            <tr>
+                <th>
+                    Comment
+                </th>
+                <th>
+                    Date
+                </th>
+            </tr>
+            @foreach (var item in Model.Comments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TextData)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CopyrightID }, new { @class = "btn btn-primary btn-sm" })
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPaymentModal">Add payment</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCommentModal">Add comment</button>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })
+    </p>
+
+
+    @Html.Partial("~/Views/Modals/_partialModalPayment.cshtml",
+    new ModalObjectData() {
+        ID = Model.CopyrightID,
+        Controller = "Copyrights",
+        ControllerMethod = "CreateCopyrightPayment"
+    })
+    @Html.Partial("~/Views/Modals/_partialModalComment.cshtml", 
+    new ModalObjectData() {
+        ID = Model.CopyrightID,
+        Controller = "Copyrights",
+        ControllerMethod = "CreateCopyrightComment"
+    })
+}

@@ -1,0 +1,14 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "Patent";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+@section Body {
+
+    @Html.Partial("~/Views/Shared/_partialWriteStringView.cshtml",
+                   String.Format(Model))
+
+}
+

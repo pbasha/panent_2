@@ -1,0 +1,72 @@
+﻿@using PATENT.Views.Modals
+@model ModalObjectData
+
+<!-- add COMMENT Modal -->
+<div class="modal fade" id="addAuthorModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Добавление автора</h4>
+            </div>
+
+            @using (Ajax.BeginForm(Model.ControllerMethod, Model.Controller, new { id = Model.ID }, new AjaxOptions { HttpMethod = "Post" }))
+            {
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="pull-left col-sm-offset-1">
+                                <label>Имя:</label>
+                            </div>
+                            <div class="pull-right col-xs-6">
+                                <input type="text" name="Name" class="form-control" />
+                            </div>
+                        </div>
+                    </div>                
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="pull-left col-sm-offset-1">
+                                <label>Фамилия:</label>
+                            </div>
+                            <div class="pull-right col-xs-6">
+                                <input type="text" name="Surname" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="pull-left col-sm-offset-1">
+                                <label>Отчество:</label>
+                            </div>
+                            <div class="pull-right col-xs-6">
+                                <input type="text" name="Patronymic" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="pull-left col-sm-offset-1">
+                                <label>Выполенный % работы:</label>
+                            </div>
+                            <div class="pull-right col-xs-6">
+                                <input type="text" name="PercentOwnership" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-default pull-right" value="Create" />
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+

@@ -5,8 +5,8 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -19,7 +19,7 @@ textarea {
 #left_menu_container {
     overflow: auto;
     width: 20%;
-    height:80vh;
+    /*height:80vh;*/
 }
 
 .string-btn{
@@ -43,7 +43,7 @@ textarea {
 #right_content_container {
     float: right;   
     width: 80%;
-    height:80vh;
+    /*height:80vh;*/
     overflow: auto;
     /*background-image: url('images/image_653861207548185868003177993439794171.jpg');
     opacity: 0.4;*/
@@ -78,4 +78,18 @@ textarea {
 .divError{
     margin-bottom: 0px;
     margin-top: 25px;
+}
+
+.writed-string {
+    color: #428bca;
+    font-size: 20px;
+}
+
+.index_table_button {
+    margin-top: 5px;
+    width: 50px;
+}
+
+.blue_clr {
+    background-color: rgba(66, 139, 202, 0.05);
 }

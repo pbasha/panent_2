@@ -1,0 +1,259 @@
+﻿@model patent.DAL.EFModels.Application
+@using PATENT.Views.Modals
+
+@{
+    ViewBag.Title = "Application Details";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+@section Body {
+
+    <div>
+        <span class="writed-string">Информация о заявке "@Model.Name.ToString()"</span>
+        <hr />
+        <dl class="dl-horizontal">
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BusinessNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BusinessNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Faculty)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Faculty)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Department)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Subjects)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Subjects)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TopicNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TopicNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                Authors
+            </dt>
+                @foreach (var item in Model.Authors)
+                {
+                    <dd>
+                        @string.Format("{0} {1} {2} ({3}%)", item.Surname, item.Name, item.Patronymic, item.PercentOwnership)
+                    </dd>
+                }
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContractNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContractNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContractDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContractDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Destination)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Destination)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RequestDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OutputNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OutputNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Priority)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Priority)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PatentNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PatentNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Validity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Validity)
+            </dd>
+        </dl>
+
+        <div class="well blue_clr">
+            <span class="writed-string">Таблица расходов</span>
+
+            @*Table for payments*@
+            <table class="table table-bordered">
+                <tr>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Дата
+                    </th>
+                    <th>
+                        Тем. часть
+                    </th>
+                </tr>
+                @foreach (var item in Model.Payments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicPart)
+                        </td>
+                    </tr>
+                }
+            </table>
+            </div>
+            <hr />
+            <div class="well blue_clr">
+                <span class="writed-string">Таблица комментриев</span>
+
+                @*Table for comments*@
+                <table class="table table-bordered">
+                    <tr>
+                        <th>
+                            Комментарий
+                        </th>
+                        <th>
+                            Дата
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.Comments)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TextData)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+
+
+        </div>
+    <p>
+        @Html.ActionLink("Править", "Edit", new { id = Model.ApplicationID }, new { @class = "btn btn-primary btn-sm" })
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPaymentModal">Добавить расход</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCommentModal">Добавить коментарий</button>
+        @Html.ActionLink("Найти патент", "TryGetPatent", "Applications", new { businessNumber = Model.BusinessNumber }, new { @class = "btn btn-primary btn-sm" })
+        @Html.ActionLink("Назад", "Index", null, new { @class = "btn btn-primary btn-sm" })
+    </p>
+
+
+    @Html.Partial("~/Views/Modals/_partialModalPayment.cshtml",
+    new ModalObjectData() {
+        ID = Model.ApplicationID,
+        Controller = "Applications",
+        ControllerMethod = "CreateApplicationPayment"
+    })
+    @Html.Partial("~/Views/Modals/_partialModalComment.cshtml", 
+    new ModalObjectData() {
+        ID = Model.ApplicationID,
+        Controller = "Applications",
+        ControllerMethod = "CreateApplicationComment"
+    })
+}

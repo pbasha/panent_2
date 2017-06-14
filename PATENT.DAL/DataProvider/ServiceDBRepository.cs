@@ -50,25 +50,6 @@ namespace patent.DAL.DataProvider
             }
         }
 
-        public bool UpdatePatent(Patent item)
-        {
-            Patent storedItem = GetPatentById(item.PatentID);
-
-            if (storedItem != null)
-            {
-                storedItem.PatentName = item.PatentName;
-                storedItem.InventorName = item.InventorName;
-                storedItem.CreatingData = item.CreatingData;
-
-                context.SaveChanges();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         #endregion
 
         #region applications
@@ -106,7 +87,7 @@ namespace patent.DAL.DataProvider
 
             if (storedItem != null)
             {
-                storedItem.PatentID = item.PatentID;
+                storedItem.PatentNumber = item.PatentNumber;
 
                 context.SaveChanges();
                 return true;

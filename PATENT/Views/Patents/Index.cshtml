@@ -1,0 +1,60 @@
+﻿@model IEnumerable<patent.DAL.EFModels.Patent>
+
+@{
+    ViewBag.Title = "Patents";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+@section Body {
+
+    <p>
+        @Html.ActionLink("Create New Patent", "Create", null, new { @class="btn btn-primary"})
+    </p>
+    <table class="table table-bordered">
+    <tr>
+        <th class="col-md-1">
+            @Html.DisplayNameFor(model => model.BusinessNumber)
+        </th>
+        <th class="col-md-5">
+            @Html.DisplayNameFor(model => model.PatentName)
+        </th>
+        <th class="col-md-4">
+            Authors
+        </th>
+        <th class="col-md-1">
+            @Html.DisplayNameFor(model => model.PatentNumber)
+        </th>
+        <th class="col-md-1">
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatentName)
+            </td>
+            <td>
+                @foreach (var author in item.Authors)
+                {
+                    @Html.Raw(string.Format("{0} {1} {2} ({3}%)", author.Surname, author.Name, author.Patronymic, author.PercentOwnership) + "<br/>")
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatentNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PatentID }, new { @class = "btn btn-primary btn-xs index_table_button" })
+                @Html.ActionLink("Details", "Details", new { id = item.PatentID }, new { @class = "btn btn-primary btn-xs index_table_button" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PatentID }, new { @class = "btn btn-danger btn-xs index_table_button" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+}
