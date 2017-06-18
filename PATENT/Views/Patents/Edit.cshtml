@@ -1,5 +1,6 @@
 ﻿@model patent.DAL.EFModels.Patent
-@using PATENT.Views.Modals
+@using PATENT.Views.Modals;
+@using PATENT.DAL.EfModels;
 
 @{
     ViewBag.Title = "Edit patent";
@@ -46,7 +47,7 @@
                 </div>
             </div>
 
-            @*patent type**********************************************@
+            @*patent type*********************************************
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.PatentType, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -55,7 +56,24 @@
                     @Html.ValidationMessageFor(model => model.PatentType, "", new { @class = "text-danger" })
                 </div>
             </div>
-            @*patent type**********************************************@
+            patent type**********************************************@
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.PatentType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(
+                model => model.PatentType,
+            new SelectList(new List<PatentType>() {
+                PatentType.UkrainianPatentForInvention,
+                PatentType.UkranianPatentForUtilityModel
+            }),
+            //new IEnumerable<SelectListItem>[] {
+            //    new SelectList
+            //},
+            new { @class = "form-control" })</div>
+            </div>
+
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">

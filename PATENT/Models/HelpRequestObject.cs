@@ -8,13 +8,11 @@ namespace PATENT.Models
     public class HelpRequestObject
     {
         //patent
-        public bool IsNewModel { get; set; }
-        public bool HaveInvLevel { get; set; }
+        public bool IsNewModel { get; set; }    //model
+        public bool HaveInvLevel { get; set; }  //model
         public bool IsIndastryUsable { get; set; }
-        public bool IsProcessOrMethor { get; set; }
-        public bool IsProdact { get; set; }
-        public bool IsDesignOnly { get; set; }
-        public bool IsProcessSecurity { get; set; }
+        public bool IsProcessOrMethor { get; set; }     //invention
+        public bool IsNotDesignOnly { get; set; }          //invention
 
         //copyright
         public bool DoYouWantToShare { get; set; }

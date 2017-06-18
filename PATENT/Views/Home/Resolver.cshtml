@@ -1,4 +1,5 @@
-﻿
+﻿@model PATENT.Models.HelpRequestObject
+
 @{
     ViewBag.Title = "Resolver";
     Layout = "~/Views/Shared/_LayoutMenu.cshtml";
@@ -6,6 +7,48 @@
 
 @section Body
 {
-    
+    @using (Ajax.BeginForm("GetHelperResult", "Helper", new AjaxOptions { HttpMethod = "Post" }))
+    {
+        <h3 class="writed-string">Отметьте те утверждения, которые подходят к вашему объекту патентирования/авторского права:</h3>
+
+        <div style="padding-bottom:30px">            
+
+            <div class="checkbox well blue_clr ch-box-container">
+                <label>@Html.CheckBoxFor(m => m.IsNewModel)Это – новое изобретение: предоставляет решение, ранее неизвестное в соответствующей области.</label>
+            </div>
+            <div class="checkbox well blue_clr ch-box-container">
+                <label>@Html.CheckBoxFor(m => m.HaveInvLevel)Имеет изобретательский уровень – не является очевидным для специалиста в данной области. Если полезный эффект достигается очевидным для специалиста образом, новые устройства и материалы могут охраняться в качестве полезных моделей.</label>
+            </div>
+            <div class="checkbox well blue_clr ch-box-container">
+                <label>
+                    @Html.CheckBoxFor(m => m.IsProcessOrMethor)Объект подходит под следующие утверждения:
+                </label>
+                <ul>
+                    <li>Является процессом либо способом, который имеет научную ценность (не очевиден специалистами в этой области);</li>
+                    <li>Продукт: вещество, изделие, устройство, штаммы микроорганизмов, клеточные культуры и т.д.;</li>
+                    <li>Какое-либо новое применение существующих продуктов и способов.</li>
+                </ul>
+            </div>
+            <div class="checkbox well blue_clr ch-box-container">
+                <label>@Html.CheckBoxFor(m => m.IsIndastryUsable)Промышленно применимо – то есть реализуемо на практике.</label>
+            </div>
+            <div class="checkbox well blue_clr ch-box-container">
+                <label>@Html.CheckBoxFor(m => m.IsNotDesignOnly)Не являются изобретениями идеи, касающиеся внешнего вида изделий, направленные на удовлетворение эстетических и эргономических потребностей.</label>
+            </div>
+
+            <div class="checkbox well blue_clr ch-box-container">
+                <label>@Html.CheckBoxFor(m => m.DoYouWantToShare)Имущественные права автора на изобретение могут быть переданы третьим лицам.</label>
+            </div>
+            <div class="checkbox well blue_clr ch-box-container">
+                <label>@Html.CheckBoxFor(m => m.IsIdea)Необходимо получить защиту самого материального воплощения предлагаемой концепции, модели, а не саму идею как таковую.</label>
+            </div>
+
+            <div class="col-md-6 text-center" style="width:100%">
+                <input type="submit" class="btn btn-primary" value="Получить ответ" />
+            </div>
+        </div>
+
+        
+    }
 }
 

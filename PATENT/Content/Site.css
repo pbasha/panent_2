@@ -93,3 +93,7 @@ textarea {
 .blue_clr {
     background-color: rgba(66, 139, 202, 0.05);
 }
+
+.ch-box-container {
+    padding-left: 40px;
+}
