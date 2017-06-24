@@ -1,7 +1,10 @@
-﻿using PATENT.Models;
+﻿using PATENT.DAL.DataProvider;
+using PATENT.DAL.EFModels;
+using PATENT.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -9,6 +12,8 @@ namespace PATENT.Controllers
 {
     public class HelperController : Controller
     {
+        private ServiceDBContext db = new ServiceDBContext();
+
         public ActionResult ShowHelperView()
         {
             return View("~/Views/Home/Resolver.cshtml", model: new HelpRequestObject());

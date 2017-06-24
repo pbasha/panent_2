@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace patent.DAL.EFModels
+namespace PATENT.DAL.EFModels
 {
     public class Application
     {

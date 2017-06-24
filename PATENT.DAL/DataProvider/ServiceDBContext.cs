@@ -1,8 +1,8 @@
 ﻿
-using patent.DAL.EFModels;
+using PATENT.DAL.EFModels;
 using System.Data.Entity;
 
-namespace patent.DAL.DataProvider
+namespace PATENT.DAL.DataProvider
 {
     public class ServiceDBContext : DbContext
     {

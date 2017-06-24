@@ -1,14 +1,14 @@
-﻿using patent.DAL.EFModels;
+﻿using PATENT.DAL.EFModels;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace patent.DAL.DataProvider
+namespace PATENT.DAL.DataProvider
 {
     public class ServiceDBRepository
     {
         #region private filds
 
-        private ServiceDBContext context;
+        public ServiceDBContext context;
 
         #endregion
 

@@ -97,3 +97,21 @@ textarea {
 .ch-box-container {
     padding-left: 40px;
 }
+
+.searchInput {
+    background-image: url('../images/searchicon.png');
+    background-position: 9px 9px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    padding: 8px 10px 8px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+#filter_contrainer {
+    margin: 0px 0px 0px 0px;
+    height: auto;
+}
+
+.date-input {
+    width:30%;
+}

@@ -1,4 +1,4 @@
-﻿@model patent.DAL.EFModels.Patent
+﻿@model PATENT.DAL.EFModels.Patent
 @using PATENT.Views.Modals;
 @using PATENT.DAL.EfModels;
 
@@ -14,7 +14,19 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Patent</h4>
+
+            <span class="writed-string">
+
+                @if (Model.Year == 0)
+                {
+                    @:Свидетельство о получении патента
+                }
+                else
+                {
+                    @:Редактирование патента @Model.PatentName
+                }
+            </span>
+
             <hr />
             
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -46,17 +58,6 @@
                     @Html.ValidationMessageFor(model => model.BusinessNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            @*patent type*********************************************
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.PatentType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PatentType, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PatentType, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            patent type**********************************************@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">

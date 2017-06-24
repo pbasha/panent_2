@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using patent.DAL.DataProvider;
-using patent.DAL.EFModels;
+using PATENT.DAL.DataProvider;
+using PATENT.DAL.EFModels;
 using PATENT.DAL.EfModels;
 using System.Threading;
 
@@ -145,9 +145,21 @@ namespace PATENT.Controllers
                 Copyright copyright = db.Copyrights
                                 .Include(m => m.Payments)
                                 .SingleOrDefault(m => m.CopyrightID == id);
+                if(copyright == null)
+                {
+                    string str_model = "Помилка при створенні автора. Авторське право не знайдено.";
+                    return View("~/Views/Shared/WriteStringView.cshtml", model: str_model);
+                }
 
-                copyright.Authors.Add(author);
-                db.SaveChanges();
+                try
+                {
+                    copyright.Authors.Add(author);
+                    db.SaveChanges();
+                }
+                catch (System.Exception ex)
+                {
+                    throw ex;
+                }
 
                 //return View("~/Views/Applications/Edit.cshtml", model: application);
                 return RedirectToAction("Edit", "Copyrights", new { id = copyright.CopyrightID });

@@ -9,27 +9,28 @@
         if (Model != null)
         {
             @Html.Partial("~/Views/Shared/_partialWriteStringView.cshtml",
-                   String.Format("Wellcome, {0}", @Model))
-
-            <button class="btn btn-primary" id="logoutBtn">Logout</button>
-
+                   String.Format("Добро пожаловать, {0}!", @Model))
+            <button class="btn btn-primary" style="margin-left:50px" id="logoutBtn">Выйти из системы</button>
         }
         else
         {
-            <div>
+            <div style="text-align:justify">
                 @Html.Partial("~/Views/Shared/_partialWriteStringView.cshtml",
-                   String.Format("You are not autorized. Please log in."))
+                   String.Format(@"Вы на главной странице интеллектуальной системы ""PATENT"". 
+                                   Данный сервис позволяет создавать, хранить и редактировать 
+                                   необходимую информацию о патентах (а именно заявки, свидетельства),
+                                   и авторских правах.
+                                   Помимо этого, система поможет определиться Вам, под какой вид
+                                   патентирования или создания авторского права больше всего подходит ваше творение.
+                                   Для работы с системой, пожалуйста, авторизуйтесь либо зарегистрируйтесь."))
             </div>
         }
     }
 
-    <div class="well well-lg blue_clr margin-off" style="margin-top:30%">
+    <div class="well well-lg blue_clr margin-off" style="margin-top:10%">
         @Html.Partial("~/Views/Shared/_partialWriteStringView.cshtml",
-                   String.Format("Web-service PATENT. Made by Basha Pavlo. Group 942"))
+                   String.Format("Веб-сервис PATENT. © Баша Павел. Группа 942"))
     </div>
-
-
-
 
 
 <script type="text/javascript">

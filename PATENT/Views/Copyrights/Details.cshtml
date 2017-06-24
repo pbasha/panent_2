@@ -1,4 +1,4 @@
-﻿@model patent.DAL.EFModels.Copyright
+﻿@model PATENT.DAL.EFModels.Copyright
 @using PATENT.Views.Modals
 
 @{
@@ -9,7 +9,9 @@
 @section Body {
 
     <div>
-        <h2>Информация о заявке "@Model.Name.ToString()"</h2>
+        <span class="writed-string">
+            Информация о @string.Format("\"{0}\"", Model.Name)
+        </span>
         <hr />
         <dl class="dl-horizontal">
             
@@ -70,7 +72,7 @@
             </dd>
 
             <dt>
-                Authors
+                Авторы
             </dt>
             @foreach (var item in Model.Authors)
             {
@@ -145,71 +147,80 @@
 
         </dl>
 
-        @*Table for payments*@
-        <table class="table">
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Amount
-                </th>
-                <th>
-                    Number
-                </th>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Topic Part
-                </th>
-            </tr>
-            @foreach (var item in Model.Payments)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PaymentName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PayNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TopicPart)
-                    </td>
-                </tr>
-            }
-        </table>
+        <div class="well blue_clr">
+            <span class="writed-string">Таблица расходов</span>
 
+            @*Table for payments*@
+            <table class="table table-bordered">
+                <tr>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Дата
+                    </th>
+                    <th>
+                        Тем. часть
+                    </th>
+                </tr>
+                @foreach (var item in Model.Payments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicPart)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
         <hr />
+        <div class="well blue_clr">
+            <span class="writed-string">Таблица комментриев</span>
 
-        @*Table for comments*@
-        <table class="table">
-            <tr>
-                <th>
-                    Comment
-                </th>
-                <th>
-                    Date
-                </th>
-            </tr>
-            @foreach (var item in Model.Comments)
-            {
+            @*Table for comments*@
+            <table class="table table-bordered">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TextData)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
+                    <th>
+                        Комментарий
+                    </th>
+                    <th>
+                        Дата
+                    </th>
                 </tr>
-            }
-        </table>
+                @foreach (var item in Model.Comments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TextData)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+
+
 
     </div>
     <p>

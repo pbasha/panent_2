@@ -1,4 +1,4 @@
-﻿@model patent.DAL.EFModels.Patent
+﻿@model PATENT.DAL.EFModels.Patent
 @using PATENT.Views.Modals
 
 @{
@@ -9,247 +9,259 @@
 @section Body {
 
     <div>
-        <h2>Информация о патенте "@Model.PatentName.ToString()"</h2>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.BusinessNumber)
-            </dt>
+        <span class="writed-string">
+            Информация о патенте "@Model.PatentName.ToString()"
+        </span>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.BusinessNumber)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.BusinessNumber)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.PPNumber)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PPNumber)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Year)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Year)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.PatentType)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PatentType)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.PatentNumber)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PatentNumber)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Country)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Country)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ApplicationNumber)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ApplicationNumber)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Priority)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Priority)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.StartDate)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.PublicationDate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PublicationDate)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.BulNumber)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.BulNumber)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.PatentNumber)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PatentNumber)
-            </dd>
-
-            <dt>
-                Authors
-            </dt>
-            @foreach (var item in Model.Authors)
-            {
                 <dd>
-                    @string.Format("{0} {1} {2} ({3}%)", item.Surname, item.Name, item.Patronymic, item.PercentOwnership)
+                    @Html.DisplayFor(model => model.BusinessNumber)
                 </dd>
-            }
 
-            <dt>
-                @Html.DisplayNameFor(model => model.PatentName)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PPNumber)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.PatentName)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PPNumber)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Applicant)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Year)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Applicant)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Year)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.PatentOwner)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PatentType)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.PatentOwner)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PatentType)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Faculty)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PatentNumber)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Faculty)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PatentNumber)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Department)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Country)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Department)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Country)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Subjects)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ApplicationNumber)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Subjects)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ApplicationNumber)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.TopicNumber)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Priority)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.TopicNumber)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Priority)
+                </dd>
 
-        </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </dt>
 
-        @*Table for payments*@
-        <table class="table">
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Amount
-                </th>
-                <th>
-                    Number
-                </th>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Topic Part
-                </th>
-            </tr>
-            @foreach (var item in Model.Payments)
-            {
+                <dd>
+                    @Html.DisplayFor(model => model.StartDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PublicationDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PublicationDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BulNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BulNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PatentNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PatentNumber)
+                </dd>
+
+                <dt>
+                    Авторы
+                </dt>
+                @foreach (var item in Model.Authors)
+                {
+                    <dd>
+                        @string.Format("{0} {1} {2} ({3}%)", item.Surname, item.Name, item.Patronymic, item.PercentOwnership)
+                    </dd>
+                }
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PatentName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PatentName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Applicant)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Applicant)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PatentOwner)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PatentOwner)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Faculty)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Faculty)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Department)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Department)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Subjects)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Subjects)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TopicNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TopicNumber)
+                </dd>
+
+            </dl>
+
+        <div class="well blue_clr">
+            <span class="writed-string">Таблица расходов</span>
+
+            @*Table for payments*@
+            <table class="table table-bordered">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PaymentName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PayNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TopicPart)
-                    </td>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Дата
+                    </th>
+                    <th>
+                        Тем. часть
+                    </th>
                 </tr>
-            }
-        </table>
-
+                @foreach (var item in Model.Payments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicPart)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
         <hr />
+        <div class="well blue_clr">
+            <span class="writed-string">Таблица комментриев</span>
 
-        @*Table for comments*@
-        <table class="table">
-            <tr>
-                <th>
-                    Comment
-                </th>
-                <th>
-                    Date
-                </th>
-            </tr>
-            @foreach (var item in Model.Comments)
-            {
+            @*Table for comments*@
+            <table class="table table-bordered">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TextData)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
+                    <th>
+                        Комментарий
+                    </th>
+                    <th>
+                        Дата
+                    </th>
                 </tr>
-            }
-        </table>
+                @foreach (var item in Model.Comments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TextData)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
 
 
-    </div>
+
+
+
+</div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.PatentID }, new { @class = "btn btn-primary btn-sm" }) 
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPaymentModal">Add payment</button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCommentModal">Add comment</button>
-        @Html.ActionLink("Find Application", "TryGetApplication", "Patents", new { businessNumber = Model.BusinessNumber }, new { @class = "btn btn-primary btn-sm" })
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })
+        @Html.ActionLink("Изменить", "Edit", new { id = Model.PatentID }, new { @class = "btn btn-primary btn-sm" }) 
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPaymentModal">Добавить платеж</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCommentModal">Добавить комментарий</button>
+        @Html.ActionLink("Найти заявку", "TryGetApplication", "Patents", new { businessNumber = Model.BusinessNumber }, new { @class = "btn btn-primary btn-sm" })
+        @Html.ActionLink("Назад", "Index", null, new { @class = "btn btn-primary btn-sm" })
     </p>
 
         @Html.Partial("~/Views/Modals/_partialModalPayment.cshtml", 

@@ -6,8 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using patent.DAL.DataProvider;
-using patent.DAL.EFModels;
+using PATENT.DAL.DataProvider;
+using PATENT.DAL.EFModels;
 using PATENT.DAL.EfModels;
 using System.Threading;
 
@@ -65,6 +65,37 @@ namespace PATENT.Controllers
 
                 //send existing Application to Edit method
                 return RedirectToAction("Edit", "Applications", new { id = newApp.ApplicationID });
+            }
+            else
+            {
+                string model = "You must be authenticated for this action. Please log in.";
+
+                return View("~/Views/Shared/WriteStringView.cshtml", model: model);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetApplicationsBetweenDate(DateTime? dateFrom, DateTime? dateTo)
+        {
+            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+            {
+                var applications = new List<Application>();
+
+                if (dateFrom != null)
+                {
+                    applications.AddRange(db.Applications
+                        .Where(item => item.RequestDate >= dateFrom)
+                        .ToList());
+                }
+                if (dateTo != null)
+                {
+                    applications.AddRange(db.Applications
+                        .Where(item => item.RequestDate <= dateTo)
+                        .ToList());
+                }
+
+                return View("~/Views/Applications/Index.cshtml", 
+                    model: (dateFrom == null && dateTo == null) ? db.Applications.ToList() : applications );
             }
             else
             {

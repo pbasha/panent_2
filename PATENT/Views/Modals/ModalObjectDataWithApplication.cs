@@ -1,4 +1,4 @@
-﻿using patent.DAL.EFModels;
+﻿using PATENT.DAL.EFModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

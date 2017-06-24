@@ -1,4 +1,4 @@
-﻿@model patent.DAL.EFModels.Copyright
+﻿@model PATENT.DAL.EFModels.Copyright
 
 @{
     ViewBag.Title = "Delete";
@@ -7,7 +7,9 @@
 
 @section Body {
 
-    <h3>Are you sure you want to delete this copyright?</h3>
+    <span class="writed-string">
+        Вы точно хотите удалить @string.Format("\"{0}\"", Model.Name)
+    </span>
     <div>
         <hr />
         <dl class="dl-horizontal">
@@ -28,12 +30,14 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Author)
+                Авторы
             </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Author)
-            </dd>
+            @foreach (var item in Model.Authors)
+            {
+                <dd>
+                    @string.Format("{0} {1} {2} ({3}%)", item.Surname, item.Name, item.Patronymic, item.PercentOwnership)
+                </dd>
+            }
 
         </dl>
 
@@ -42,8 +46,8 @@
             @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-danger btn-sm" /> 
-                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })
+                <input type="submit" value="Удалить" class="btn btn-danger btn-sm" /> 
+                @Html.ActionLink("Назад", "Index", null, new { @class = "btn btn-primary btn-sm" })
             </div>
         }
     </div>
