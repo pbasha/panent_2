@@ -81,21 +81,30 @@ namespace PATENT.Controllers
             {
                 var applications = new List<Application>();
 
-                if (dateFrom != null)
+                if (dateFrom == null && dateTo == null)
+                {
+                    applications.AddRange(db.Applications.ToList());
+                }
+                else if (dateFrom != null && dateTo == null)
                 {
                     applications.AddRange(db.Applications
                         .Where(item => item.RequestDate >= dateFrom)
                         .ToList());
                 }
-                if (dateTo != null)
+                else if (dateTo != null && dateFrom == null)
                 {
                     applications.AddRange(db.Applications
                         .Where(item => item.RequestDate <= dateTo)
                         .ToList());
                 }
+                else
+                {
+                    applications.AddRange(db.Applications
+                        .Where(item => item.RequestDate >= dateFrom && item.RequestDate <= dateTo)
+                        .ToList());
+                }
 
-                return View("~/Views/Applications/Index.cshtml", 
-                    model: (dateFrom == null && dateTo == null) ? db.Applications.ToList() : applications );
+                return View("~/Views/Applications/Index.cshtml", model: applications);
             }
             else
             {

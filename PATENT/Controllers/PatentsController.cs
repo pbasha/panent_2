@@ -32,6 +32,46 @@ namespace PATENT.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult GetPatentsBetweenDate(DateTime? dateFrom, DateTime? dateTo)
+        {
+            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+            {
+                var patents = new List<Patent>();
+
+                if (dateFrom == null && dateTo == null)
+                {
+                    patents.AddRange(db.Patents.ToList());
+                }
+                else if (dateFrom != null && dateTo == null)
+                {
+                    patents.AddRange(db.Patents
+                        .Where(item => item.PublicationDate >= dateFrom)
+                        .ToList());
+                }
+                else if (dateTo != null && dateFrom == null)
+                {
+                    patents.AddRange(db.Patents
+                        .Where(item => item.PublicationDate <= dateTo)
+                        .ToList());
+                }
+                else
+                {
+                    patents.AddRange(db.Patents
+                        .Where(item => item.PublicationDate >= dateFrom && item.PublicationDate <= dateTo)
+                        .ToList());
+                }
+
+                return View("~/Views/Patents/Index.cshtml", model: patents);
+            }
+            else
+            {
+                string model = "You must be authenticated for this action. Please log in.";
+
+                return View("~/Views/Shared/WriteStringView.cshtml", model: model);
+            }
+        }
+
         // GET: Patents/Details/5
         public ActionResult Details(int? id)
         {

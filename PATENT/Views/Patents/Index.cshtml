@@ -7,10 +7,51 @@
 
 @section Body {
 
-    <p>
-        @Html.ActionLink("Добавить свидетельство о патенте", "Create", null, new { @class="btn btn-primary"})
-    </p>
-    <table class="table table-bordered">
+<div style="margin-bottom:10px">
+    @Html.ActionLink("Добавить свидетельство о патенте", "Create", null, new { @class = "btn btn-primary" })
+    <button data-toggle="collapse" data-target="#filter_contrainer" class="btn btn-primary">Поиск по таблице</button>
+</div>
+
+<div id="filter_contrainer" class="collapse">
+    <div class="row" style="margin: 0px 0px 0px 0px; height: auto;">
+        <input type="text" class="col-md-2 searchInput" id="searchByBusinessInput" onkeyup="search(this.id, 'content_table', 0)" placeholder="№ дела">
+        <input type="text" class="col-md-6 searchInput" id="searchByNameInput" onkeyup="search(this.id, 'content_table', 1)" placeholder="Название">
+        <input type="text" class="col-md-4 searchInput" id="searchByAuthorInput" onkeyup="search(this.id, 'content_table', 2)" placeholder="Автор">
+        <input type="text" class="col-md-2 searchInput" id="searchByAppNumberInput" onkeyup="search(this.id, 'content_table', 3)" placeholder="№ заявки">
+    </div>
+
+
+    @using (Html.BeginForm("GetPatentsBetweenDate", "Patents",
+        null,
+        FormMethod.Get))
+    {
+        <div style="display:inline-flex; padding-bottom:10px">
+            <div>
+                <span class="writed-string" style="font-size:12px; margin-right:10px">По периоду: </span>
+            </div>
+            <div class='input-group date date-input' id='datetimepickerFrom' style="margin-right:10px">
+                <input class="form-control" id="searchDateFrom" placeholder="От" name="dateFrom">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+
+            <div class='input-group date date-input' id='datetimepickerTo' style="margin-right:10px">
+                <input class="form-control" id="searchDateTo" placeholder="До" name="dateTo">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+
+            @*<button id="btnSearch" class="btn btn-primary">Поиск</button>*@
+            <input class="btn btn-primary" type="submit" value="Поиск" />
+            @*@Html.ActionLink("Поиск", "Index", "Applications", null, new { @class = "btn btn-primary btn-sm" })*@
+        </div>
+    }
+
+</div>
+
+    <table id="content_table" class="table table-bordered">
     <tr>
         <th class="col-md-1">
             @Html.DisplayNameFor(model => model.BusinessNumber)
@@ -57,4 +98,45 @@
 
 </table>
 
+}
+
+@section scripts {
+<script type="text/javascript">
+
+    $(function () {
+        $('#datetimepickerTo').datepicker();
+    });
+    $(function () {
+        $('#datetimepickerFrom').datepicker();
+    });
+
+    $('#datetimepickerTo').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+
+    $('#datetimepickerFrom').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+
+    function search(id, tableId, coloumnNum) {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById(id);
+        filter = input.value.toUpperCase();
+        table = document.getElementById(tableId);
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[coloumnNum];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 }

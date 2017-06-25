@@ -48,39 +48,6 @@
                 @*@Html.ActionLink("Поиск", "Index", "Applications", null, new { @class = "btn btn-primary btn-sm" })*@
             </div>
         }
-            
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepickerTo').datepicker();
-            });      
-            $(function () {
-                $('#datetimepickerFrom').datepicker();
-            });
-
-            $(document).ready(function () {
-                $('#btnSearch').click(function () {
-                    $.ajax({
-                        type: "GET",
-                        url: "/Helper/GetApplicationsBetweenDate",
-                        data: {
-                            dateFrom: $('#datetimepickerTo').datepicker('getDate').toISOString(),
-                            dateTo: $('#datetimepickerFrom').datepicker('getDate').toISOString()
-                        },
-                        success: function (response) { $('body').append(response); },
-                        error: function (xhr, ajaxOptions, thrownError) { alert("error!"); }
-                    });
-                });
-            });
-
-            $('#datetimepickerTo').on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
-
-            $('#datetimepickerFrom').on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
-
-        </script>
 
 </div>
 
@@ -136,7 +103,23 @@
 
 @section scripts {
     
-<script>
+<script type="text/javascript">
+
+    $(function () {
+        $('#datetimepickerTo').datepicker();
+    });
+    $(function () {
+        $('#datetimepickerFrom').datepicker();
+    });
+
+    $('#datetimepickerTo').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+
+    $('#datetimepickerFrom').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+
     function search(id, tableId, coloumnNum) {
         // Declare variables
         var input, filter, table, tr, td, i;
@@ -158,4 +141,4 @@
         }
     }
 </script>
-  }
+}

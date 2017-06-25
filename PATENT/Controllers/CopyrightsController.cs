@@ -6,6 +6,8 @@ using PATENT.DAL.DataProvider;
 using PATENT.DAL.EFModels;
 using PATENT.DAL.EfModels;
 using System.Threading;
+using System;
+using System.Collections.Generic;
 
 namespace PATENT.Controllers
 {
@@ -49,6 +51,47 @@ namespace PATENT.Controllers
                 return View("~/Views/Shared/WriteStringView.cshtml", model: model);
             }
         }
+
+        [HttpGet]
+        public ActionResult GetCopyrightsBetweenDate(DateTime? dateFrom, DateTime? dateTo)
+        {
+            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+            {
+                var copyrights = new List<Copyright>();
+
+                if (dateFrom == null && dateTo == null)
+                {
+                    copyrights.AddRange(db.Copyrights.ToList());
+                }
+                else if (dateFrom != null && dateTo == null)
+                {
+                    copyrights.AddRange(db.Copyrights
+                        .Where(item => item.RequestDate >= dateFrom)
+                        .ToList());
+                }
+                else if (dateTo != null && dateFrom == null)
+                {
+                    copyrights.AddRange(db.Copyrights
+                        .Where(item => item.RequestDate <= dateTo)
+                        .ToList());
+                }
+                else
+                {
+                    copyrights.AddRange(db.Copyrights
+                        .Where(item => item.RequestDate >= dateFrom && item.RequestDate <= dateTo)
+                        .ToList());
+                }
+
+                return View("~/Views/Copyrights/Index.cshtml", model: copyrights);
+            }
+            else
+            {
+                string model = "You must be authenticated for this action. Please log in.";
+
+                return View("~/Views/Shared/WriteStringView.cshtml", model: model);
+            }
+        }
+
 
         // GET: Copyrights/Create
         public ActionResult Create()
